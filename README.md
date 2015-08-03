@@ -5,7 +5,7 @@ A collection of exponential growth visualization
 
 
 ## Heading ##
-  > That One Percent
+  That One Percent
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
