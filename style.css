@@ -1,4 +1,8 @@
 body {
   font-family: sans-serif;
-  color: lime;
+  color: #4747FF;
+}
+
+.input{
+  margin: 40 10 10 10px;
 }

@@ -6,9 +6,14 @@
 </head>
 <body>
   <h1>Page Title</h1>
-  <div>Show growth here!!!</div>  
+  <div ng-app="thatone" ng-controller="input" class="input">
+    <div>Show growth here!!! </div>  
+    <div> {{ starting }}</div>  
+    <div> {{ timePeriod }}</div>  
+    <div> {{ rate }}</div>  
+    <div> {{ ending }}</div>  
+  </div>
   <script src="node_modules/angular/angular.min.js"></script>
   <script src="thatone.js"></script>  
-
 </body>
 </html>

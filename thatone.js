@@ -1,9 +1,19 @@
-var STARTING = 100;
-var ENDING = 0;
-var TIME = 10;
-var RATE = 8;
+var starting = 100;
+var ending = 0;
+var timePeriod = 10;
+var rate = 8;
 
 // Calculate interest with given parameters
-ENDING = Math.round(STARTING * Math.pow(1 + RATE / 100, TIME), 2);
+ending = Number(starting * Math.pow(1 + rate / 100, timePeriod)).toFixed(2);
 
-console.log('STARTING', STARTING, 'ENDING', ENDING);
+var app = angular.module('thatone', []);
+  
+app.controller('input', ['$scope', function($scope) {
+  $scope.test = 'something';
+
+  $scope.starting = starting;
+  $scope.ending = ending;
+  $scope.timePeriod = timePeriod;
+  $scope.rate = rate;
+
+}]);
