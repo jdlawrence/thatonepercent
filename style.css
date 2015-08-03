@@ -1,8 +1,17 @@
 body {
   font-family: sans-serif;
   color: #4747FF;
+  font-size: 1.4rem;
 }
 
 .input{
   margin: 40 10 10 10px;
+}
+
+.blowup {
+  .font-size: 25px;
+}
+
+.inputField {
+  margin: 20px;
 }

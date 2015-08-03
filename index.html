@@ -9,15 +9,23 @@
   <div ng-app="thatone">
 
     <form name="inputForm" ng-controller="inputCtrl" class="input">
-      <label>Starting Amount:
+      <label class="inputField">Starting Amount:
         <input type="number" name="starting" ng-model="inputs.starting"
-        min="0" max="99" required>
+        min="0" required>
       </label>
-      <div> {{ inputs.starting }}</div>  
-
-      <!-- <div> {{ timePeriod }}</div>   -->
-      <!-- <div> {{ rate }}</div>   -->
-      <!-- <div> {{ ending }}</div>   -->
+      <label class="inputField">Time Period:
+        <input type="number" name="time-period" ng-model="inputs.timePeriod"
+        min="0" required>
+      </label>
+      <label class="inputField">Growth Rate:
+        <input type="number" name="rate" ng-model="inputs.rate"
+        min="0" max="2000" required>
+      </label>
+      <br><br>
+      <div> Starting {{ inputs.starting }}</div>  
+      <div> Time Period {{ inputs.timePeriod }}</div>  
+      <div> Rate {{ inputs.rate }}</div>  
+      <div ng-model="ending" ng-change='change()' > Ending:  ${{ ending }}</div>  
 
     </form>
 
