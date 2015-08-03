@@ -5,29 +5,39 @@ A collection of exponential growth visualization
 
 
 ## Heading ##
-  That One Percent
+  That One Percent - Visualize how small changes can make a huge difference when dealing with exponential growth.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  “The greatest shortcoming of the human race is our inability to understand the exponential function.” 
+  ― Albert A. Bartlett
+
+  For the mathematically inclined and uninclined, That One Percent is way to explore the impact of changing small factors
+  in situations. Play with the visualizations provided and apply small changes for big results in your life.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Users can input starting value, and time, and play with interest rate as a slider. A exponential growth curve will be displayed. They can hover over the growth curve at any particular point and get the value and time at the point. Above 
+  the graph there is also a short display of how much growth has occurred, showing starting and values, and growth rate.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  The power of exponential growth is often underestimated. This aims to give the user an accurate view of how the 
+  exponential curve functions.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  With inputs for starting value, ending value, and a slider for interest rate, users can play with each of these factors
+  and get a feel for how each one affects output.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  "Demystifying the power and complexity of exponential growth."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  Simply type in a starting value, time, and move the interest rate slider to point where you desire.
+  The graph will update in real time.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "I understand that a small change interest rate will make a huge in my outcome!!"
+  -Joe Schmoe
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  Now that you have learned exponential growth works, apply it to your life! Look for lower interest rates on loans!
+  Make an extra mortgage payment per year! Find an index fund with a lower fee percentage
 
