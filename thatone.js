@@ -7,13 +7,16 @@ var rate = 8;
 ending = Number(starting * Math.pow(1 + rate / 100, timePeriod)).toFixed(2);
 
 var app = angular.module('thatone', []);
-  
-app.controller('input', ['$scope', function($scope) {
-  $scope.test = 'something';
 
-  $scope.starting = starting;
-  $scope.ending = ending;
-  $scope.timePeriod = timePeriod;
-  $scope.rate = rate;
+app.controller('inputCtrl', ['$scope', function($scope) {
+  $scope.inputs = {
+    starting: starting,
+    ending: ending,
+    timePeriod: timePeriod,
+    rate: rate
+  };
+  
+  // console.log('input.value', $scope.inputs);
+
 
 }]);

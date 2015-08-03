@@ -6,12 +6,22 @@
 </head>
 <body>
   <h1>Page Title</h1>
-  <div ng-app="thatone" ng-controller="input" class="input">
-    <div>Show growth here!!! </div>  
-    <div> {{ starting }}</div>  
-    <div> {{ timePeriod }}</div>  
-    <div> {{ rate }}</div>  
-    <div> {{ ending }}</div>  
+  <div ng-app="thatone">
+
+    <form name="inputForm" ng-controller="inputCtrl" class="input">
+      <label>Starting Amount:
+        <input type="number" name="starting" ng-model="inputs.starting"
+        min="0" max="99" required>
+      </label>
+      <div> {{ inputs.starting }}</div>  
+
+      <!-- <div> {{ timePeriod }}</div>   -->
+      <!-- <div> {{ rate }}</div>   -->
+      <!-- <div> {{ ending }}</div>   -->
+
+    </form>
+
+
   </div>
   <script src="node_modules/angular/angular.min.js"></script>
   <script src="thatone.js"></script>  
