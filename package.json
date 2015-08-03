@@ -1,0 +1,28 @@
+{
+  "name": "thatonepercent",
+  "version": "1.0.0",
+  "description": "Exponential growth visualization",
+  "main": "thatone.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdlawrence/thatonepercent.git"
+  },
+  "keywords": [
+    "d3",
+    "visualiztion",
+    "exponential",
+    "growth"
+  ],
+  "author": "Jamil Lawrence",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdlawrence/thatonepercent/issues"
+  },
+  "homepage": "https://github.com/jdlawrence/thatonepercent",
+  "dependencies": {
+    "angular": "^1.4.3"
+  }
+}
