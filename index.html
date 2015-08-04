@@ -6,9 +6,9 @@
 </head>
 <body>
   <h1>Page Title</h1>
-  <div ng-app="thatone">
+  <div ng-app="thatone" ng-controller="inputCtrl" >
 
-    <form name="inputForm" ng-controller="inputCtrl" class="input">
+    <form name="inputForm" class="input">
       <label class="inputField">Starting Amount:
         <input type="number" name="starting" ng-model="inputs.starting"
         min="0" required>
@@ -26,10 +26,10 @@
       <div> Time Period {{ inputs.timePeriod }}</div>  
       <div> Rate {{ inputs.rate }}</div>  
       <div ng-model="ending" ng-change='change()' > Ending:  ${{ ending }}</div>  
-
-      <div expChart chart-data="dataTograph"></div>
-
+      <!-- <div>endingAmounts {{ endingAmounts }} </div> -->
     </form>
+
+    <exp-graph chart-data="endingAmounts"></exp-graph>
 
 
   </div>
