@@ -1,8 +1,8 @@
 var starting = 100;
 var ending = 110;
-var timePeriod = 1;
+var timePeriod = 10;
 var rate = 10.0;
-var numBuckets = 20;
+var numBuckets = 50;
 
 // Calculate interest with given parameters
 // ending = Number(starting * Math.pow(1 + rate / 100, timePeriod)).toFixed(2);
@@ -40,7 +40,7 @@ app.controller('inputCtrl', ['$scope', function($scope) {
 app.directive("expGraph", function($parse, $window) {
   return{
     restrict: "E",
-    template: "<svg width='850' height='200'></svg>",
+    template: "<svg width='850' height='800'></svg>",
     scope: false,
     link: function(scope, elem, attrs){
       // Variables end in D to different those in directive from those not in the directive
@@ -50,6 +50,10 @@ app.directive("expGraph", function($parse, $window) {
       var startingD = 0;
       var endingAmountD = 0;
 
+      var d3 = $window.d3;
+      var rawSvg=elem.find('svg');
+      var svg = d3.select(rawSvg[0]);
+
 
       console.log('scope', scope);  
       var exp = $parse(attrs.chartData);
@@ -58,20 +62,36 @@ app.directive("expGraph", function($parse, $window) {
 
 
       // Directive Data updates when any input changes
-      scope.$watchCollection('inputs', drawGraph);
+      scope.$watchCollection('inputs', updateGraph);
 
-      function drawGraph(){
+
+      // Puts data in endingAmountsD object. Ready for graphing with D3 and SVG.
+      function updateGraph(){
         endingAmountsD = [];
         for (var i = 0; i < numBuckets; i++) {
           timeD = Number(dataToPlot.timePeriod / numBuckets * (i+1)).toFixed(2);
           endingAmountD = Number(dataToPlot.starting * Math.pow(1 + dataToPlot.rate / 100, timeD)).toFixed(2);
-          endingAmountsD.push({i: timeD, end: endingAmountD});
+          endingAmountsD.push({xVal: timeD, yVal: endingAmountD});
         }
-        console.log('timeD', timeD);
-        console.log('dataToPlot', dataToPlot.starting);
         console.log('endingAmountsD', endingAmountsD);
+        drawGraph();
       }
 
+      function drawGraph() {
+        // Selects all circles and appends
+        svg.selectAll("circle")
+        .data(endingAmountsD)
+        .enter()
+        .append("circle")
+
+        .attr("cx", function(d) {
+          return d.xVal * 50;
+        })
+        .attr("cy", function(d) {
+          return d.yVal * 2;
+        })
+        .attr("r", 3);
+      }
 
       // for (var i = 0; i < numBuckets; i++) {
       //   time = Number($scope.inputs.timePeriod / numBuckets * (i+1)).toFixed(2);

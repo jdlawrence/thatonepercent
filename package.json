@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/jdlawrence/thatonepercent",
   "dependencies": {
-    "angular": "^1.4.3"
+    "angular": "^1.4.3",
+    "d3": "^3.5.6"
   }
 }
