@@ -2,14 +2,15 @@ var starting = 100;
 var ending = 110;
 var timePeriod = 10;
 var rate = 10.0;
-var numBuckets = 50;
+var numBuckets = 20;
+var padding = 20;
 
 // Calculate interest with given parameters
 // ending = Number(starting * Math.pow(1 + rate / 100, timePeriod)).toFixed(2);
 
 var app = angular.module('thatone', []);
 
-app.controller('inputCtrl', ['$scope', function($scope) {
+app.controller('inputCtrl', ['$scope', '$interval', function($scope, $interval) {
   $scope.sampleData = [12,3,3,4,5];
   $scope.inputs = {
     starting: starting,
@@ -17,6 +18,10 @@ app.controller('inputCtrl', ['$scope', function($scope) {
     rate: rate
   };
   $scope.endingAmounts = [];
+
+  // $interval(function(){
+  //   $scope.inputs.starting *= 1.00000;
+  // }, 100);
 
   // 'ending' value is calculated any time there's a change on any of the input values
   $scope.$watchCollection('inputs', calcEnding);
@@ -40,7 +45,7 @@ app.controller('inputCtrl', ['$scope', function($scope) {
 app.directive("expGraph", function($parse, $window) {
   return{
     restrict: "E",
-    template: "<svg width='850' height='800'></svg>",
+    template: "<svg class='graph' width='800' height='500'></svg>",
     scope: false,
     link: function(scope, elem, attrs){
       // Variables end in D to different those in directive from those not in the directive
@@ -64,7 +69,6 @@ app.directive("expGraph", function($parse, $window) {
       // Directive Data updates when any input changes
       scope.$watchCollection('inputs', updateGraph);
 
-
       // Puts data in endingAmountsD object. Ready for graphing with D3 and SVG.
       function updateGraph(){
         endingAmountsD = [];
@@ -79,25 +83,56 @@ app.directive("expGraph", function($parse, $window) {
 
       function drawGraph() {
         // Selects all circles and appends
+        svg.selectAll('*').remove();
+
+        xScale = d3.scale.linear()
+        .domain([endingAmountsD[0].xVal, endingAmountsD[endingAmountsD.length-1].xVal])
+        .range([padding + 5, rawSvg.attr("width") - padding]);
+
+        console.log(d3.max(endingAmountsD, function (d) {
+          return d.yVal;
+        }));
+        yScale = d3.scale.linear().domain([0, d3.max(endingAmountsD, function (d) {
+          return d.yVal;
+        })])
+        .range([rawSvg.attr("height") - padding, 0]);
+
+        xAxisGen = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom")
+        .ticks(endingAmountsD.length - 1);
+
+        yAxisGen = d3.svg.axis()
+        .scale(yScale)
+        .orient("left")
+        .ticks(5);           
+
         svg.selectAll("circle")
         .data(endingAmountsD)
         .enter()
         .append("circle")
 
         .attr("cx", function(d) {
-          return d.xVal * 50;
+          return xScale(d.xVal);
         })
         .attr("cy", function(d) {
-          return d.yVal * 2;
+          return yScale(d.yVal);
         })
         .attr("r", 3);
+
+        svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0,470)")
+        .call(xAxisGen);
+
+        svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(40,0)")
+        .attr("font-size", "10px")
+        .call(yAxisGen);
+        
       }
 
-      // for (var i = 0; i < numBuckets; i++) {
-      //   time = Number($scope.inputs.timePeriod / numBuckets * (i+1)).toFixed(2);
-      //   amountYValue = Number($scope.inputs.starting * Math.pow(1 + $scope.inputs.rate / 100, time)).toFixed(2);
-      //   $scope.endingAmounts.push(amountYValue);
-      // }
 
       
     }
