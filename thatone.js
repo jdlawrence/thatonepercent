@@ -1,4 +1,4 @@
-var starting = 100;
+var starting = 1000;
 var ending = 110;
 var timePeriod = 10;
 var rate = 10.0;
@@ -37,6 +37,7 @@ app.controller('inputCtrl', ['$scope', '$interval', function($scope, $interval) 
       $scope.endingAmounts.push(amountYValue);
     }
     // console.log('timeAmount', $scope.endingAmounts);
+
 
   }
 
@@ -86,7 +87,9 @@ app.directive("expGraph", function($parse, $window) {
         svg.selectAll('*').remove();
 
         xScale = d3.scale.linear()
-        .domain([endingAmountsD[0].xVal, endingAmountsD[endingAmountsD.length-1].xVal])
+        // .domain([endingAmountsD[0].xVal, endingAmountsD[endingAmountsD.length-1].xVal])
+        .domain([0, endingAmountsD[endingAmountsD.length-1].xVal])
+
         .range([padding + 5, rawSvg.attr("width") - padding]);
 
         console.log(d3.max(endingAmountsD, function (d) {
@@ -111,7 +114,6 @@ app.directive("expGraph", function($parse, $window) {
         .data(endingAmountsD)
         .enter()
         .append("circle")
-
         .attr("cx", function(d) {
           return xScale(d.xVal);
         })
@@ -121,15 +123,20 @@ app.directive("expGraph", function($parse, $window) {
         .attr("r", 3);
 
         svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0,470)")
-        .call(xAxisGen);
+        .attr("class", "x axis")
+        .attr("transform", "translate(0,470)");
+        // .call(xAxisGen);
 
         svg.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(40,0)")
-        .attr("font-size", "10px")
-        .call(yAxisGen);
+        .attr("font-size", "10px");
+        // .call(yAxisGen);
+
+        svg.selectAll("g.y.axis").call(yAxisGen);
+
+        svg.selectAll("g.x.axis").call(xAxisGen);
+
         
       }
 
